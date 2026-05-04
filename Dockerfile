@@ -1,4 +1,4 @@
-FROM caddy:builder AS builder
+FROM docker.io/library/caddy:builder AS builder
 
 RUN xcaddy build \
     --with github.com/caddy-dns/cloudflare@v0.2.4 \
@@ -7,5 +7,5 @@ RUN xcaddy build \
     --with github.com/hslatman/caddy-crowdsec-bouncer/http@v0.12.1 \
     --with github.com/porech/caddy-maxmind-geolocation@v1.0.3
 
-FROM caddy:latest
+FROM docker.io/library/caddy:latest
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
